@@ -1,0 +1,120 @@
+{"rules":
+[
+  {
+    "id":"rule_1",
+    "name":"ATM_TTR",
+    "description": "ATM TTR Identification",
+    "is_valid": "true",
+    "valid_from": "10/12/2021",
+    "valid_till": "10/12/2999",
+    "process": "filtration",
+    "process_key": "query_lookup",
+    "is_lookup": "true",
+    "when":
+    [
+      {
+        "lookup_value": " where transaction_status_code = 'completed' and transaction_global_currency_code in ('AUD', '036') and credit_debit_code = 'C' and transaction_code = 'A0007A20' and batch_process_date = '27/02/2022'"
+      }
+    ],
+    "then":
+        {
+          "field_name": "",
+          "field_value": ""
+        }
+  },
+  {
+    "id":"rule_2",
+    "name":"ATM_TTR",
+    "description": "ATM TTR Identification",
+    "is_valid": "true",
+    "valid_from": "10/12/2021",
+    "valid_till": "10/12/2999",
+    "process": "identification",
+    "process_key": "value_lookup",
+    "is_lookup": "true",
+    "when":
+    [
+      {
+        "lookup_value": {"check_cheque_transaction": "yes", "flag" :  "pass"}
+      }
+    ],
+    "then":
+        {
+          "field_name": "",
+          "field_value": ""
+        }
+  },
+  {
+    "id":"rule_3",
+    "name":"ATM_TTR",
+    "description": "ATM TTR Identification",
+    "is_valid": "true",
+    "valid_from": "10/12/2021",
+    "valid_till": "10/06/2022",
+    "process": "identification",
+    "process_key": "query_builder",
+    "is_lookup": "false",
+    "when":
+    [
+          {
+            "field_name": "transaction_total_amount",
+            "operator": ">=",
+            "field_value": "10000",
+            "join": ""
+          }
+    ],
+    "then":
+        {
+          "field_name": "is_ttr",
+          "field_value": "true"
+        }
+  },
+  {
+    "id":"rule_4",
+    "name":"ATM_TTR",
+    "description": "ATM TTR Identification",
+    "is_valid": "true",
+    "valid_from": "10/12/2021",
+    "valid_till": "10/06/2022",
+    "process": "identification",
+    "process_key": "query_builder",
+    "is_lookup": "false",
+    "when":
+    [
+          {
+            "field_name": "transaction_total_amount - cheque_amount",
+            "operator": ">=",
+            "field_value": "10000",
+            "join": ""
+          }
+    ],
+    "then":
+        {
+          "field_name": "is_ttr",
+          "field_value": "true"
+        }
+  },
+  {
+    "id":"rule_5",
+    "name":"ATM_TTR",
+    "description": "ATM TTR Identification",
+    "is_valid": "true",
+    "valid_from": "10/12/2021",
+    "valid_till": "10/06/2022",
+    "process": "identification",
+    "process_key": "conditional",
+    "is_lookup": "true",
+    "when":
+    [
+          {
+            "lookup_value": {"check_cheque_transaction": "no"}
+          }
+    ],
+    "then":
+        {
+          "field_name": "goto",
+          "field_value": "rule_4"
+        }
+  }
+  ]
+}

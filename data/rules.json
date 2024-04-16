@@ -1,0 +1,201 @@
+{"rules":
+[
+  {
+    "id":"rule_1",
+    "name":"ATM_TTR",
+    "description": "ATM TTR Identification",
+    "is_valid": "true",
+    "valid_from": "10/12/2021",
+    "valid_till": "10/12/2999",
+    "process": "identification",
+    "key": "query_builder",
+    "is_lookup": "false",
+    "when":
+    [
+          {
+            "field_name": "amount",
+            "operator": ">=",
+            "field_value": 10000,
+            "join": "AND"
+          },
+          {
+            "field_name": "cash_transaction",
+            "operator": "=",
+            "field_value": "true",
+            "join": ""
+          }
+    ],
+    "then":
+        {
+          "field_name": "is_ttr",
+          "field_value": "true"
+        }
+  },
+  {
+    "id":"filter_1",
+    "name":"ATM_TTR",
+    "description": "ATM TTR Filtration",
+    "is_valid": "true",
+    "valid_from": "10/12/2021",
+    "valid_till": "10/12/2999",
+    "process": "filtration",
+    "key": "query_lookup",
+    "is_lookup": "true",
+    "when":
+    [
+      {"lookup_value": " where transaction_status_code = 'completed' and transaction_global_currency_code in('AUD', '036')"}
+    ],
+    "then":
+        {
+          "field_name": "",
+          "field_value": ""
+        }
+  },
+  {
+    "id":"filter_2",
+    "name":"ATM_TTR",
+    "description": "ATM TTR Filtration",
+    "is_valid": "true",
+    "valid_from": "10/12/2021",
+    "valid_till": "10/12/2999",
+    "process": "filtration",
+    "key": "query_lookup",
+    "is_lookup": "true",
+    "when":
+    [
+      {"lookup_value": " where amount >= 10000"}
+    ],
+    "then":
+        {
+          "field_name": "",
+          "field_value": ""
+        }
+  },
+  {
+    "id":"group_by_1",
+    "name":"ATM_TTR",
+    "description": "ATM TTR Filtration",
+    "is_valid": "true",
+    "valid_from": "10/12/2021",
+    "valid_till": "10/12/2999",
+    "process": "filtration",
+    "key": "groupby_lookup",
+    "is_lookup": "true",
+    "when":
+    [
+      {"lookup_value": " group by id"}
+    ],
+    "then":
+        {
+          "field_name": "",
+          "field_value": ""
+        }
+  },
+  {
+    "id":"rule_2",
+    "name":"ATM_TTR",
+    "description": "ATM TTR Identification",
+    "is_valid": "true",
+    "valid_from": "10/12/2021",
+    "valid_till": "10/12/2999",
+    "process": "identification",
+    "key": "query_builder",
+    "is_lookup": "false",
+    "when":
+    [
+          {
+            "field_name": "amount",
+            "operator": ">=",
+            "field_value": 10000,
+            "join": "AND"
+          },
+          {
+            "field_name": "cash_transaction",
+            "operator": "=",
+            "field_value": "true",
+            "join": ""
+          }
+    ],
+    "then":
+        {
+          "field_name": "goto",
+          "field_value": "rule_3"
+        }
+  },
+  {
+    "id":"rule_3",
+    "name":"ATM_TTR",
+    "description": "ATM TTR Identification",
+    "is_valid": "true",
+    "valid_from": "10/12/2021",
+    "valid_till": "10/12/2999",
+    "process": "identification",
+    "key": "query_builder",
+    "is_lookup": "false",
+    "when":
+    [
+          {
+            "field_name": "city",
+            "operator": "=",
+            "field_value": "sydney",
+            "join": ""
+          }
+    ],
+    "then":
+        {
+          "field_name": "goto",
+          "field_value": "rule_4"
+        }
+  },
+  {
+    "id":"rule_4",
+    "name":"ATM_TTR",
+    "description": "ATM TTR Identification",
+    "is_valid": "true",
+    "valid_from": "10/12/2021",
+    "valid_till": "10/12/2999",
+    "process": "identification",
+    "key": "query_builder",
+    "is_lookup": "false",
+    "when":
+    [
+          {
+            "field_name": "txn_source_code",
+            "operator": "LIKE",
+            "field_value": "DEPOSIT",
+            "join": ""
+          }
+    ],
+    "then":
+        {
+          "field_name": "is_ttr",
+          "field_value": "true"
+        }
+  },
+  {
+    "id":"filter_3",
+    "name":"ATM_TTR",
+    "description": "ATM TTR Identification",
+    "is_valid": "true",
+    "valid_from": "10/12/2021",
+    "valid_till": "10/12/2999",
+    "process": "identification",
+    "key": "value_lookup",
+    "is_lookup": "true",
+    "when":
+    [
+      {
+        "lookup_value": [
+          {"check_cash_amount": "yes"},
+          {"daylight_saving": "true"}
+        ]
+      }
+    ],
+    "then":
+        {
+          "field_name": "",
+          "field_value": ""
+        }
+  }
+]
+}

@@ -1,0 +1,10 @@
+session_id,id,date,txn_source_code,cash_amount,cheque_amount,transaction_total_amount,cash_transaction,time,city,transaction_status_code,transaction_global_currency_code,credit_debit_code,transaction_code,batch_process_date,check_cheque_transaction
+1,10,"16/01/2022","DEPOSIT",3000,3000,6000,true,"09:30:00.000000","sydney","completed","AUD","C","A0007A20","27/02/2022","yes"
+1,20,"16/01/2022","DEPOSIT",3000,9000,12000,true,"09:30:00.000000","sydney","completed","AUD","C","A0007A20","27/02/2022","yes"
+3,20,"16/01/2022","CASH",10000,9000,19000,true,"16:30:00.000000","sydney","completed","AUD","C","A0007A20","27/02/2022","yes"
+1,30,"16/01/2022","DEPOSIT",1000,9000,10000,true,"11:30:00.000000","sydney","completed","AUD","C","A0007A20","27/02/2022","yes"
+2,40,"16/01/2022","DEPOSIT",13000,2000,15000,true,"12:30:00.000000","melbourne","completed","INR","C","A0007A20","27/02/2022","yes"
+1,50,"16/01/2022","DEPOSIT",2000,400,2400,true,"09:30:00.000000","sydney","completed","INR","C","A0007A20","27/02/2022","yes"
+3,60,"16/01/2022","DEPOSIT",9000,4000,16000,true,"16:30:00.000000","sydney","completed","AUD","C","A0007A20","27/02/2022","yes"
+1,70,"16/01/2022","DEPOSIT",1000,2000,3000,true,"11:30:00.000000","sydney","completed","AUD","C","A0007A20","27/02/2022","yes"
+2,80,"16/01/2022","DEPOSIT",1000,900,1900,true,"12:30:00.000000","melbourne","completed","AUD","C","A0007A20","27/02/2022","yes"

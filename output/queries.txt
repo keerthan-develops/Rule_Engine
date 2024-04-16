@@ -1,0 +1,2 @@
+ select * from atm_filtered  where transaction_total_amount - cheque_amount >= 10000
+
